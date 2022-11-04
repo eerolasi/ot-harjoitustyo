@@ -1,4 +1,4 @@
-# Ohjelmistotekniikka, harjoitustyö  
+# Ohjelmistotekniikka,harjoitustyö  
 ## Tehtävät
 ### Viikko 1
 [gitlog.txt](https://github.com/eerolasi/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)  
