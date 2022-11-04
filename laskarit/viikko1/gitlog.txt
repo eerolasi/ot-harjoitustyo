@@ -1,0 +1,114 @@
+commit d2629e75a3267f769ff65ef99c94db3ecad5ac9c
+Author: Siru <siru.eerola@helsinki.fi>
+Date:   Wed Nov 2 16:58:47 2022 +0200
+
+    poistettu fil1 ja file2 uudelleennimetty file22
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit a0dfa0060a6ebb60dac25c8e46a1cdc5d78f27f5
+Author: Siru <siru.eerola@helsinki.fi>
+Date:   Wed Nov 2 16:55:31 2022 +0200
+
+    hakemisto tiedostoja ja kolme fileä luotu
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit e5eef9551984ad6824e7532890215689bc1be675
+Author: Siru <siru.eerola@helsinki.fi>
+Date:   Wed Nov 2 16:50:28 2022 +0200
+
+    muokattu eka.txt ja kolmas.txt
+
+ eka.txt    | 7 ++++---
+ kolmas.txt | 2 +-
+ 2 files changed, 5 insertions(+), 4 deletions(-)
+
+commit 89b2296515a49a1a473b3464b13ad8d35f1adcb3
+Author: Siru <siru.eerola@helsinki.fi>
+Date:   Wed Nov 2 16:48:51 2022 +0200
+
+    tiedosto.txt uudelleennimetty eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8726d84a0c67f0794eab97fd6482ce638606aaa0
+Author: Siru <siru.eerola@helsinki.fi>
+Date:   Wed Nov 2 16:47:06 2022 +0200
+
+    toinen.txt poistettu
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 0dd00d48ef753029af53fbfb54b76d6c36bc28c6
+Author: Siru <siru.eerola@helsinki.fi>
+Date:   Wed Nov 2 16:45:15 2022 +0200
+
+    tiedosto.txt muokattu
+
+ tiedosto.txt | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+commit e427746b6850d08e7ec1c632e018ba96c266dc16
+Author: Siru <siru.eerola@helsinki.fi>
+Date:   Wed Nov 2 16:44:48 2022 +0200
+
+    tiedosto.txt muokattu
+
+ tiedosto.txt | 32 +++++++++++++++++++++++++++++++-
+ 1 file changed, 31 insertions(+), 1 deletion(-)
+
+commit 51c6ba8d074f07933aa79a0cdffed887c5bd6459
+Author: Siru <siru.eerola@helsinki.fi>
+Date:   Wed Nov 2 16:42:29 2022 +0200
+
+    hakemisto stuff ja tiedosto joku.txt luotu
+
+ stuff/joku.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit d45b7fa20c14fab8db0cb9ad2f440d43f8d065fd
+Author: Siru <siru.eerola@helsinki.fi>
+Date:   Wed Nov 2 16:39:52 2022 +0200
+
+    muokattu toinen.txt ja kolmas.txt
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 34fc286660858f17fa1affe0ea75e730c21bfbac
+Author: Siru <siru.eerola@helsinki.fi>
+Date:   Wed Nov 2 16:38:30 2022 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 41a9a28639b3d70884b1428317b5ddfb63e44030
+Author: Siru <siru.eerola@helsinki.fi>
+Date:   Wed Nov 2 16:37:30 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 44c03714d0b1499b0d2ecc0b82da40edba000309
+Author: Siru <siru.eerola@helsinki.fi>
+Date:   Wed Nov 2 16:35:31 2022 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
