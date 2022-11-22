@@ -3,7 +3,7 @@ from database_connection import get_database_connection
 def drop_tables(connection):
     '''Entisten taulujen poisto'''
     cursor = connection.cursor()
-    cursor.execute("DROP TABLE IF EXISTS Users;")
+    cursor.execute("DROP TABLE IF EXISTS Users")
     connection.commit()
 
 def create_tables(connection):
@@ -12,7 +12,7 @@ def create_tables(connection):
     cursor.execute('''
         CREATE TABLE Users (
             username TEXT PRIMARY KEY,
-            password TEXT);
+            password TEXT)
     ''')
     connection.commit()
 
