@@ -3,3 +3,4 @@
 - Käyttäjä voi rekisteröityä
 - Käyttöliittymän pohja luotu
 - Käyttäjien tallennus tietokantaan
+- Luotu testit kirjautumiselle ja rekisteröitymiselle
