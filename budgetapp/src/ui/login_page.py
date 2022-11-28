@@ -1,5 +1,7 @@
 from tkinter import ttk, constants, StringVar
 from services.budget import budget_service, LoginError
+
+
 class LoginPage:
 
     def __init__(self, root, login, show_signup_page):
@@ -30,7 +32,8 @@ class LoginPage:
             foreground="red"
         )
         self._error_label.grid(padx=5, pady=5)
-        heading_label = ttk.Label(master=self._frame, text="Sisäänkirjautuminen")
+        heading_label = ttk.Label(
+            master=self._frame, text="Sisäänkirjautuminen")
         heading_label.grid(padx=5, pady=5)
 
         username_label = ttk.Label(master=self._frame, text="Käyttäjätunnus: ")
@@ -41,7 +44,7 @@ class LoginPage:
         password_label = ttk.Label(master=self._frame, text="Salasana: ")
         self._password_entry = ttk.Entry(master=self._frame)
         password_label.grid(padx=5, pady=5)
-        self._password_entry.grid( padx=5, pady=5)
+        self._password_entry.grid(padx=5, pady=5)
 
         login_button = ttk.Button(
             master=self._frame,
@@ -54,10 +57,10 @@ class LoginPage:
             text="Siirry luomaan käyttäjätunnus",
             command=self._show_signup_page
         )
-        login_button.grid(padx=5,pady=5)
-        signup_button.grid(padx=5,pady=5)
+        login_button.grid(padx=5, pady=5)
+        signup_button.grid(padx=5, pady=5)
 
-        self._frame.grid_columnconfigure(0, weight=3,minsize=400)
+        self._frame.grid_columnconfigure(0, weight=3, minsize=400)
 
         self._hide_error()
 
@@ -66,7 +69,7 @@ class LoginPage:
         password = self._password_entry.get()
 
         try:
-            budget_service.login(username,password)
+            budget_service.login(username, password)
             self._login()
         except LoginError:
             self._show_error("Kirjautuminen epäonnistui")
@@ -77,7 +80,3 @@ class LoginPage:
 
     def _hide_error(self):
         self._error_label.grid_remove()
-
-
-
-

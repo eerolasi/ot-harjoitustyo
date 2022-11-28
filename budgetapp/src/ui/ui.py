@@ -2,6 +2,7 @@ from ui.signup_page import SignupPage
 from ui.login_page import LoginPage
 from ui.front_page import FrontPage
 
+
 class UI:
     def __init__(self, root):
         self._root = root

@@ -1,11 +1,12 @@
 from tkinter import ttk, constants, StringVar
 from services.budget import budget_service, UserExitsError
 
+
 class SignupPage:
     def __init__(self, root, signup, show_login_page):
         self._root = root
         self._frame = None
-        self._signup=signup
+        self._signup = signup
         self._show_login_page = show_login_page
         self._username_entry = None
         self._password_entry = None
@@ -30,13 +31,14 @@ class SignupPage:
         )
         self._error_label.grid(padx=5, pady=5)
 
-        heading_label = ttk.Label(master=self._frame, text="Käyttäjätunnuksen luonti")
+        heading_label = ttk.Label(
+            master=self._frame, text="Käyttäjätunnuksen luonti")
         heading_label.grid(padx=5, pady=5)
 
         username_label = ttk.Label(master=self._frame, text="Käyttäjätunnus: ")
         self._username_entry = ttk.Entry(master=self._frame)
         username_label.grid(padx=5, pady=5)
-        self._username_entry.grid( padx=5, pady=5)
+        self._username_entry.grid(padx=5, pady=5)
 
         password_label = ttk.Label(master=self._frame, text="Salasana: ")
         self._password_entry = ttk.Entry(master=self._frame)
@@ -48,7 +50,7 @@ class SignupPage:
             text="Luo",
             command=self._signup_handler
         )
-        signup_button.grid(padx=5,pady=5)
+        signup_button.grid(padx=5, pady=5)
 
         login_button = ttk.Button(
             master=self._frame,
@@ -57,7 +59,7 @@ class SignupPage:
         )
         login_button.grid(padx=5, pady=5)
 
-        self._frame.grid_columnconfigure(0, weight=3,minsize=400)
+        self._frame.grid_columnconfigure(0, weight=3, minsize=400)
         self._hide_error()
 
     def _signup_handler(self):
@@ -84,4 +86,3 @@ class SignupPage:
 
     def _hide_error(self):
         self._error_label.grid_remove()
-
