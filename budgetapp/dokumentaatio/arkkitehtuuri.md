@@ -10,6 +10,6 @@ User: password
 User: budget
 ```
 
-
+![pakkauskaavio](budgetapp/dokumentaatio/photos/pakkauskaavio.png)
 
 
