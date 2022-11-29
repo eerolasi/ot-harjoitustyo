@@ -41,6 +41,10 @@ class UI:
 
         self._current_view = FrontPage(
             self._root,
-            self._show_login_page
+            self._show_login_page,
+            self._handle_update
         )
         self._current_view.pack()
+
+    def _handle_update(self):
+        self._show_front_page()

@@ -5,6 +5,7 @@ def drop_tables(connection):
     '''Entisten taulujen poisto'''
     cursor = connection.cursor()
     cursor.execute("DROP TABLE IF EXISTS Users")
+    cursor.execute("DROP TABLE IF EXISTS Transactions")
     connection.commit()
 
 
@@ -14,8 +15,14 @@ def create_tables(connection):
     cursor.execute('''
         CREATE TABLE Users (
             username TEXT PRIMARY KEY,
-            password TEXT)
+            password TEXT,
+            budget INTEGER)
     ''')
+    cursor.execute('''
+        CREATE TABLE Transactions (
+            username TEXT,
+            amount INTEGER)
+            ''')
     connection.commit()
 
 

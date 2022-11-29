@@ -1,5 +1,5 @@
 from tkinter import ttk, constants, StringVar
-from services.budget import budget_service, UserExitsError
+from services.budget_service import budget_service, UserExitsError
 
 
 class SignupPage:

@@ -33,5 +33,19 @@ class UserRepository:
         cursor.execute("DELETE FROM Users")
         self._connection.commit()
 
+    def add_budget(self, budget, username):
+        cursor = self._connection.cursor()
+
+        cursor.execute("UPDATE Users SET budget=? WHERE username=?", [
+                       budget, username])
+        self._connection.commit()
+        return budget
+
+    def get_budget(self, user):
+        cursor = self._connection.cursor()
+        row = cursor.execute(
+            "SELECT budget FROM Users WHERE username=?", [user]).fetchone()
+        return row["budget"]
+
 
 user_repository = UserRepository(get_database_connection())
