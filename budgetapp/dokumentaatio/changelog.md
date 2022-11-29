@@ -4,3 +4,6 @@
 - Käyttöliittymän pohja luotu
 - Käyttäjien tallennus tietokantaan
 - UserRepositorylle luotu testit
+
+## Viikko4
+- Käyttäjä voi kirjautua ulos
