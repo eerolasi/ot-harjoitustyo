@@ -1,4 +1,5 @@
 from entities.user import User
+from entities.transaction import Transaction
 from repositories.user_repository import user_repository as default_user_repository
 
 
@@ -14,6 +15,9 @@ class BudgetService:
     def __init__(self, user_repository=default_user_repository):
         self._user = None
         self._user_repository = user_repository
+
+    def get_logged_user(self):
+        return self._user
 
     def signup(self, username, password, login=True):
         user_exist = self._user_repository.find_by_username(username)
@@ -32,6 +36,9 @@ class BudgetService:
             raise LoginError("Kirjautuminen epäonnistui")
         self._user = user
         return user
+
+    def logout(self):
+        self._user = None
 
 
 budget_service = BudgetService()
