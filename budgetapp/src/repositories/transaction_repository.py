@@ -23,7 +23,6 @@ class TransactionRepository:
         rows = cursor.execute(
             '''SELECT sum(amount) as amount, category FROM Transactions WHERE
             username=? group by category''', [user]).fetchall()
-
         return {i["category"]: i["amount"] for i in rows}
 
     def clear_transactions(self, user):

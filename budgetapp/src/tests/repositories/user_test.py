@@ -6,7 +6,7 @@ from entities.user import User
 class TestUser(unittest.TestCase):
     def setUp(self):
         user_repository.clear_table()
-        self.user = User("user", "123")
+        self.user = User("user", "123", 10)
         self.user2 = User("user2", "1234")
 
     def test_signup(self):
@@ -26,3 +26,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(len(users), 2)
         self.assertEqual(users[0].username, user1.username)
         self.assertEqual(users[1].username, user2.username)
+
+    def test_add_budget(self):
+        budget = user_repository.add_budget(10, self.user2.username)
+        self.assertEqual(budget, 10)
