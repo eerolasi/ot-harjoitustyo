@@ -29,5 +29,9 @@ Testikattavuus:
 ```
 poetry run invoke coverage-report
 ```
+Pylint:
+```
+poetry run invoke lint
+```
 
 
