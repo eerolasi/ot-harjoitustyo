@@ -31,7 +31,6 @@ class BudgetService:
         user_exist = self._user_repository.find_by_username(username)
         if user_exist:
             raise UserExitsError("Käyttäjätunnus on varattu")
-
         user = self._user_repository.signup(User(username, password))
         if login:
             self._user = user
@@ -53,8 +52,8 @@ class BudgetService:
             raise InvalidInputError("Budjetti ei voi olla negatiivinen")
         return self._user_repository.add_budget(budget, user)
 
-    def add_transaction(self, user, amount):
-        transaction = Transaction(user, int(amount))
+    def add_transaction(self, user, category, amount):
+        transaction = Transaction(user, category, int(amount))
         if transaction.amount < 0:
             raise InvalidInputError("Menon summa ei voi olla negatiivinen")
         return self._transaction_repository.add_transaction(transaction)
@@ -81,6 +80,16 @@ class BudgetService:
         if transactions and not budget:
             return -transactions
         return budget-transactions
+
+    def get_transactions(self, user):
+        amounts = self._transaction_repository.get_transactions_by_category(
+            user)
+        return amounts
+
+    def clear_all(self, user):
+        self._user_repository.add_budget(0, user)
+        self._transaction_repository.clear_transactions(user)
+        return user
 
 
 budget_service = BudgetService()

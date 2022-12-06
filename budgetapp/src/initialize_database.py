@@ -21,6 +21,7 @@ def create_tables(connection):
     cursor.execute('''
         CREATE TABLE Transactions (
             username TEXT,
+            category TEXT,
             amount INTEGER)
             ''')
     connection.commit()
