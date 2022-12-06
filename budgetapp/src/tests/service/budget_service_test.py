@@ -13,7 +13,7 @@ class TestUser(unittest.TestCase):
         self.user = User("user", "123", 100)
 
         self.transaction = Transaction(self.user.username)
-        self.transaction2 = Transaction(self.user.username,"ruoka", 3)
+        self.transaction2 = Transaction(self.user.username, "ruoka", 3)
 
     def test_signup(self):
         signed = budget_service.signup(self.user.username, self.user.password)
@@ -38,7 +38,7 @@ class TestUser(unittest.TestCase):
 
     def test_add_transaction(self):
         with self.assertRaises(InvalidInputError):
-            budget_service.add_transaction(self.user.username,"muu", -1)
+            budget_service.add_transaction(self.user.username, "muu", -1)
         transaction = budget_service.add_transaction(
             self.user.username, self.transaction2.category, self.transaction2.amount)
         self.assertEqual(3, transaction)
@@ -47,7 +47,6 @@ class TestUser(unittest.TestCase):
         budget_service.get_transactions_sum(self.user.username)
         budget_service.add_transaction(
             self.transaction.username, self.transaction.category, self.transaction2.amount)
-        budget_service.add_transaction(self.user.username,"muu", 5)
+        budget_service.add_transaction(self.user.username, "muu", 5)
         sum = budget_service.get_transactions_sum(self.user.username)
         self.assertEqual(sum, 8)
-

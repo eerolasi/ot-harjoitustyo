@@ -59,7 +59,7 @@ class SignupPage:
         )
         login_button.grid(padx=5, pady=5)
 
-        self._frame.grid_columnconfigure(0, weight=3, minsize=400)
+        self._frame.grid_columnconfigure(0, weight=3, minsize=600)
         self._hide_error()
 
     def _signup_handler(self):

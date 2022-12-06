@@ -10,8 +10,8 @@ class TestUser(unittest.TestCase):
         user_repository.clear_table()
         transaction_repository.clear_table()
         self.user = User("user", "123")
-        self.transcation = Transaction(self.user.username,"muu", 10)
-        self.transcation2 = Transaction(self.user.username,"sijoitukset", 3)
+        self.transcation = Transaction(self.user.username, "muu", 10)
+        self.transcation2 = Transaction(self.user.username, "sijoitukset", 3)
 
     def test_add_transaction(self):
         transaction_repository.add_transaction(self.transcation)
@@ -25,8 +25,10 @@ class TestUser(unittest.TestCase):
 
     def test_get_transactions_by_category(self):
         transaction_repository.add_transaction(self.transcation)
-        category = transaction_repository.get_transactions_by_category(self.user.username)
-        self.assertEqual(category, {self.transcation.category:self.transcation.amount})
+        category = transaction_repository.get_transactions_by_category(
+            self.user.username)
+        self.assertEqual(
+            category, {self.transcation.category: self.transcation.amount})
 
     def test_clear_transactions(self):
         transaction_repository.add_transaction(self.transcation)

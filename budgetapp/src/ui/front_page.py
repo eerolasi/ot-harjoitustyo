@@ -1,5 +1,5 @@
 from tkinter import ttk, constants, StringVar, Listbox
-from services.budget_service import budget_service
+from services.budget_service import budget_service, InvalidInputError
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 from matplotlib.figure import Figure
@@ -16,6 +16,8 @@ class FrontPage:
         self._categories = ["muu", "ruoka", "asuminen",
                             "harrastukset", "vapaa-aika", "viihde", "sijoitukset"]
         self._categories_entry = None
+        self._error_variable = None
+        self._error_label = None
         self._user = budget_service.get_logged_user()
         self._budget = budget_service.get_budget(self._user.username)
         self._transactions_sum = budget_service.get_transactions_sum(
@@ -32,7 +34,13 @@ class FrontPage:
 
     def _front_page(self):
         self._frame = ttk.Frame(master=self._root)
-
+        self._error_variable = StringVar(self._frame)
+        self._error_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._error_variable,
+            foreground="red"
+        )
+        self._error_label.grid()
         heading_label = ttk.Label(
             master=self._frame, text=f"Olet nyt kirjautunut sisään nimellä {self._user.username}!")
         heading_label.grid(padx=5, pady=5)
@@ -119,6 +127,7 @@ class FrontPage:
         )
         logout_button.grid(padx=5, pady=5)
         self._frame.grid_columnconfigure(0, weight=3, minsize=600)
+        self._hide_error()
 
     def _reset_handler(self):
         budget_service.clear_all(self._user.username)
@@ -137,6 +146,17 @@ class FrontPage:
 
     def _add_transaction(self):
         category = self._category_value.get()
-        amount = self._amount_entry.get()
-        budget_service.add_transaction(self._user.username, category, amount)
-        self._reload()
+        try:
+            amount = self._amount_entry.get()
+            budget_service.add_transaction(
+                self._user.username, category, amount)
+            self._reload()
+        except InvalidInputError:
+            self._show_error("Lisää summa")
+
+    def _show_error(self, message):
+        self._error_variable.set(message)
+        self._error_label.grid()
+
+    def _hide_error(self):
+        self._error_label.grid_remove()
