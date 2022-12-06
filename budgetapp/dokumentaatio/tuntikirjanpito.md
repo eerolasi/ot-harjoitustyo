@@ -8,5 +8,6 @@
 | 22.11 | 1 | rekisteröitymiseen ja kirjautumiseen testit |
 | 28.11 | 0.5 | koodin refaktorointia |
 | 29.11 | 6 | uloskirjautuminen, budjetin ja menojen luonti, testejä, arkkitehtuurikuvaus |
-| yht | 14 | |
+| 6.11 | 7 | nollaus, graafinen esitys, kategoriointi, sekvenssikaavio |
+| yht | 21 | |
 
