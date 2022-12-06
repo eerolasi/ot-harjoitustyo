@@ -10,8 +10,10 @@
 - Käyttäjä voi lisätä menoja. **tehty**
 - Sovellus näyttää käyttäjän budjetin tasapainon. **tehty alustavasti**
 - Käyttäjä voi nimetä menon.
-- Käyttäjä kategorisoida menojaan.
+- Käyttäjä kategorisoida menojaan. **tehty**
 - Käyttäjä voi nostaa budjettiaan lisäämällä tuloja.
+- Käyttäjä voi nollata budjetin ja menot. **tehty**
+- Budjetin graafinen esitys. **tehty**
 
 #### Jatkokehitysideoita
-- Budjetin graafinen esiys
+- Kuukausittainen budjetointi
