@@ -5,8 +5,14 @@
 - [arkkitehtuuri](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/arkkitehtuuri.md)
 - [release](https://github.com/eerolasi/ot-harjoitustyo/releases/tag/viikko5)
 ## Käyttöohjeet
+
 Siirry aluksi budgetapp hakemistoon
 
+### Tietokannan alustus viikko5 releasessa:
+Tällä hetkellä tietokanta on alustettava manuaalisesti:
+- luo budgetapp hakemistoon data hakemisto
+- luo data hakemistoon tiedosto .gitkeep
+- siirry takaisin budgetapp hakemistoon
 1. Asenna riippuvuudet:  
 
 ```
