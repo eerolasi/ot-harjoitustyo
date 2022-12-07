@@ -6,13 +6,11 @@
 - [release](https://github.com/eerolasi/ot-harjoitustyo/releases/tag/viikko5)
 ## Käyttöohjeet
 
-Siirry aluksi budgetapp hakemistoon
-
-### Tietokannan alustus viikko5 releasessa:
-Tällä hetkellä tietokanta on alustettava manuaalisesti:
-- luo budgetapp hakemistoon data hakemisto
+Jos lataa koodin viikon5 releasen kautta on se alustettava manuaalisesti:
+- luo budgetapp-hakemistoon data-hakemisto
 - luo data hakemistoon tiedosto .gitkeep
-- siirry takaisin budgetapp hakemistoon
+
+Siirry budgetapp-hakemistoon
 1. Asenna riippuvuudet:  
 
 ```
