@@ -60,7 +60,6 @@ class FrontPage:
             fig = Figure()
             ax = fig.add_subplot(111)
             fig.set_size_inches(5, 5)
-
             fig.set_facecolor('#DCDCDC')
             ax.pie(values, labels=labels, autopct='%0.1f%%')
 
@@ -81,6 +80,18 @@ class FrontPage:
                 text="Lisää",
                 command=self._add_budget)
             budget_button.grid(padx=5, pady=5)
+
+        income_label = ttk.Label(master=self._frame, text="Lisää tuloja")
+        income_label.grid()
+
+        self._income_entry = ttk.Entry(master=self._frame)
+        self._income_entry.grid()
+        income_button = ttk.Button(
+            master=self._frame,
+            text="Lisää",
+            command=self._add_income
+        )
+        income_button.grid()
 
         transaction_label = ttk.Label(master=self._frame, text="Lisää meno")
         transaction_label.grid(padx=5, pady=5)
@@ -139,4 +150,10 @@ class FrontPage:
         category = self._category_value.get()
         amount = self._amount_entry.get()
         budget_service.add_transaction(self._user.username, category, amount)
+        self._reload()
+
+    def _add_income(self):
+        income = self._income_entry.get()
+        budget = int(income) + self._budget
+        budget_service.add_budget(budget, self._user.username)
         self._reload()
