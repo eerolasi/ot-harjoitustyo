@@ -2,7 +2,11 @@ from database_connection import get_database_connection
 
 
 def drop_tables(connection):
-    '''Entisten taulujen poisto'''
+    """Poistaa entiset taulut
+
+    Args:
+        connection(object): tietokantayhteys
+    """
     cursor = connection.cursor()
     cursor.execute("DROP TABLE IF EXISTS Users")
     cursor.execute("DROP TABLE IF EXISTS Transactions")
@@ -10,7 +14,11 @@ def drop_tables(connection):
 
 
 def create_tables(connection):
-    '''Luodaan uusi taulu tietokantaan'''
+    """Luodaan tietokantataulut käyttäjille ja maksutapahtumille
+
+    Args:
+        connection(object): tietokantayhteys
+    """
     cursor = connection.cursor()
     cursor.execute('''
         CREATE TABLE Users (
@@ -28,7 +36,8 @@ def create_tables(connection):
 
 
 def initialize_database():
-    '''Alustetaan tietokantataulu'''
+    """Tietokantataulujen alustus
+    """
     connection = get_database_connection()
     drop_tables(connection)
     create_tables(connection)
