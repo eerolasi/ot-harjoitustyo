@@ -11,7 +11,7 @@
 - Sovellus näyttää käyttäjän budjetin tasapainon. **tehty alustavasti**
 - Käyttäjä voi nimetä menon.
 - Käyttäjä kategorisoida menojaan. **tehty**
-- Käyttäjä voi nostaa budjettiaan lisäämällä tuloja.
+- Käyttäjä voi nostaa budjettiaan lisäämällä tuloja. **tehty **
 - Käyttäjä voi nollata budjetin ja menot. **tehty**
 - Budjetin graafinen esitys. **tehty**
 
