@@ -1,9 +1,11 @@
 # Budjetointisovellus
-- [vaatimusmaarittely](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/vaatimusmaarittely.md)  
+- [vaatimusmäärittely](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/vaatimusmaarittely.md)  
 - [tuntikirjanpito](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/tuntikirjanpito.md)  
 - [changelog](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/changelog.md)
 - [arkkitehtuuri](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/arkkitehtuuri.md)
+- [käyttöohje](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/kayttoohje.md)
 - [release](https://github.com/eerolasi/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Käyttöohjeet
 
 Jos lataa koodin viikon5 releasen kautta on se alustettava manuaalisesti:
