@@ -17,11 +17,10 @@ class FrontPage:
                             "harrastukset", "vapaa-aika", "viihde", "sijoitukset"]
         self._categories_entry = None
         self._user = budget_service.get_logged_user()
-        self._budget = budget_service.get_budget(self._user.username)
-        self._transactions_sum = budget_service.get_transactions_sum(
-            self._user.username)
-        self._balance = budget_service.get_balance(self._user.username)
-        self._pie = budget_service.get_transactions(self._user.username)
+        self._budget = budget_service.get_budget()
+        self._transactions_sum = budget_service.get_transactions_sum()
+        self._balance = budget_service.get_balance()
+        self._pie = budget_service.get_transactions_by_category()
         self._front_page()
 
     def pack(self):
@@ -132,7 +131,7 @@ class FrontPage:
         self._frame.grid_columnconfigure(0, weight=3, minsize=600)
 
     def _reset_handler(self):
-        budget_service.clear_all(self._user.username)
+        budget_service.clear_all()
         self._reload()
 
     def _logout_handler(self):
@@ -143,17 +142,17 @@ class FrontPage:
         budget = self._budget_entry.get()
         budget = int(budget)
 
-        budget_service.add_budget(budget, self._user.username)
+        budget_service.add_budget(budget)
         self._reload()
 
     def _add_transaction(self):
         category = self._category_value.get()
         amount = self._amount_entry.get()
-        budget_service.add_transaction(self._user.username, category, amount)
+        budget_service.add_transaction(category, amount)
         self._reload()
 
     def _add_income(self):
         income = self._income_entry.get()
         budget = int(income) + self._budget
-        budget_service.add_budget(budget, self._user.username)
+        budget_service.add_budget(budget)
         self._reload()

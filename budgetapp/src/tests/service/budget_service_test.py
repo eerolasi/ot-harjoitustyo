@@ -11,9 +11,11 @@ class TestUser(unittest.TestCase):
         user_repository.clear_table()
         transaction_repository.clear_table()
         self.user = User("user", "123", 100)
-
-        self.transaction = Transaction(self.user.username)
+        self.transaction = Transaction(self.user.username,"muu", 2)
         self.transaction2 = Transaction(self.user.username, "ruoka", 3)
+
+    def login_user(self):
+        budget_service.signup(self.user.username,self.user.password)
 
     def test_signup(self):
         signed = budget_service.signup(self.user.username, self.user.password)
@@ -21,7 +23,7 @@ class TestUser(unittest.TestCase):
         with self.assertRaises(UserExitsError):
             budget_service.signup("user", "1223")
 
-    def test_login(self):
+    def test_login_fail(self):
         with self.assertRaises(LoginError):
             budget_service.login(self.user.username, "124")
 
@@ -31,22 +33,24 @@ class TestUser(unittest.TestCase):
         self.assertEqual(logged.username, self.user.username)
 
     def test_add_budget(self):
+        self.login_user()
         with self.assertRaises(InvalidInputError):
-            budget_service.add_budget(-1, self.user.username)
-        budget = budget_service.add_budget(100, self.user.username)
+            budget_service.add_budget(-1)
+        budget = budget_service.add_budget(100)
         self.assertEqual(100, budget)
 
     def test_add_transaction(self):
+        self.login_user()
         with self.assertRaises(InvalidInputError):
-            budget_service.add_transaction(self.user.username, "muu", -1)
+            budget_service.add_transaction("muu", -1)
         transaction = budget_service.add_transaction(
-            self.user.username, self.transaction2.category, self.transaction2.amount)
+            self.transaction2.category, self.transaction2.amount)
         self.assertEqual(3, transaction)
 
     def test_get_transactions_sum(self):
-        budget_service.get_transactions_sum(self.user.username)
+        budget_service.get_transactions_sum()
         budget_service.add_transaction(
-            self.transaction.username, self.transaction.category, self.transaction2.amount)
-        budget_service.add_transaction(self.user.username, "muu", 5)
-        sum = budget_service.get_transactions_sum(self.user.username)
+            self.transaction.category, self.transaction2.amount)
+        budget_service.add_transaction( "muu", 5)
+        sum = budget_service.get_transactions_sum()
         self.assertEqual(sum, 8)

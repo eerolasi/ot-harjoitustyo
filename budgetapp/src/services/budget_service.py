@@ -88,12 +88,11 @@ class BudgetService:
         """
         self._user = None
 
-    def add_budget(self, budget, username):
+    def add_budget(self, budget):
         """Lisää käyttäjälle budjetin
 
         Args:
             budget (int): käyttäjän antama budjetti
-            username (str): käyttäjän käyttäjätunnus
 
         Raises:
             InvalidInputError: Tuottaa poikkeuksen jos käyttäjä yrittää asettaa
@@ -104,13 +103,12 @@ class BudgetService:
         """
         if budget < 0:
             raise InvalidInputError("Budjetti ei voi olla negatiivinen")
-        return self._user_repository.add_budget(budget, username)
+        return self._user_repository.add_budget(budget, self._user.username)
 
-    def add_transaction(self, username, category, amount):
+    def add_transaction(self, category, amount):
         """Lisää käyttäjälle uuden menon
 
         Args:
-            username (str): käyttäjän käyttäjätunnus
             category (str): käyttäjän valitsema kategoria
             amount (int): käyttäjän antama menon summa
 
@@ -120,44 +118,35 @@ class BudgetService:
         Returns:
             Palauttaa annetun menon summan
         """
-        transaction = Transaction(username, category,int(amount))
+        transaction = Transaction(self._user.username, category,int(amount))
         if transaction.amount < 0:
             raise InvalidInputError("Menon summa ei voi olla negatiivinen")
         return self._transaction_repository.add_transaction(transaction)
 
-    def get_budget(self, username):
+    def get_budget(self):
         """Palauttaa käyttäjän budjetin
-
-        Args:
-            username (str): käyttäjän käyttäjätunnus
 
         Returns:
             Palauttaa annetun käyttäjän budjetin
         """
-        budget = self._user_repository.get_budget(username)
+        budget = self._user_repository.get_budget(self._user.username)
         if not budget:
             return 0
         return budget
 
-    def get_transactions_sum(self, username):
+    def get_transactions_sum(self):
         """Palauttaa käyttäjän menojen yhteissumman
-
-        Args:
-            username (str): käyttäjän käyttäjätunnus
 
         Returns:
             Paluttaa käyttäjän menojen yhteissumman
         """
-        transactions = self._transaction_repository.get_transactions(username)
+        transactions = self._transaction_repository.get_transactions(self._user.username)
         if not transactions:
             return 0
         return transactions
 
-    def get_balance(self, username):
+    def get_balance(self):
         """Palauttaa käyttäjän budjetin tasapainon
-
-        Args:
-            username(str): käyttäjän käyttätunnus
 
         Returns:
             Jos käyttäjällä ei ole budjettia eikä menoja palauttaa 0
@@ -165,8 +154,8 @@ class BudgetService:
             Jos käyttäjällä on menoja, muttei budjettia palauttaa menot negatiivisena
             Jos käyttäjällä on budjetti ja menoja palauttaa niiden erotuksen
         """
-        budget = self._user_repository.get_budget(username)
-        transactions = self._transaction_repository.get_transactions(username)
+        budget = self._user_repository.get_budget(self._user.username)
+        transactions = self._transaction_repository.get_transactions(self._user.username)
         if not budget and not transactions:
             return 0
         if budget and not transactions:
@@ -175,32 +164,26 @@ class BudgetService:
             return -transactions
         return budget-transactions
 
-    def get_transactions(self, user):
+    def get_transactions_by_category(self):
         """Palauttaa kaikki menot kategorioittain
-
-        Args:
-            username (str): käyttäjän käyttäjätunnus
 
         Returns:
             palauttaa sanakirjana käyttäjän menot ja niiden kategoriat
         """
         amounts = self._transaction_repository.get_transactions_by_category(
-            user)
+            self._user.username)
         return amounts
 
 
-    def clear_all(self, username):
+    def clear_all(self):
         """Asettaa käyttäjän budjetin 0 ja poistaa kaikki menot
-
-        Args:
-            username(str): käyttäjän käyttäjätunnus
 
         Returns:
             Palauttaa käyttäjän käyttäjätunnuksen
         """
-        self._user_repository.add_budget(0, username)
-        self._transaction_repository.clear_transactions(username)
-        return username
+        self._user_repository.add_budget(0, self._user.username)
+        self._transaction_repository.clear_transactions(self._user.username)
+        return self._user.username
 
 
 budget_service = BudgetService()
