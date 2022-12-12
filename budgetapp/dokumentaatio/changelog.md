@@ -17,3 +17,7 @@
 - Lisätty kirjasto matplotlib
 - Menojen jakautuminen näytetään ympyrädiagrammin muodossa
 - Käyttäjä voi nollata budjetin ja menot
+
+## Viikko 6
+- Käyttäjä voi lisätä tuloja
+- Refaktoroitu koodia siistimmäksi
