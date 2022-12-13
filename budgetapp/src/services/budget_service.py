@@ -103,7 +103,7 @@ class BudgetService:
         """
         try:
             budget = int(budget)
-        except TypeError:
+        except ValueError:
             budget = 0
         budget = int(budget)
         if budget <= 0:
@@ -127,7 +127,7 @@ class BudgetService:
         """
         try:
             income = int(income)
-        except TypeError:
+        except ValueError:
             income = 0
         new_budget = income + budget
         if income <= 0:
@@ -151,7 +151,7 @@ class BudgetService:
 
         try:
             amount = int(amount)
-        except TypeError:
+        except ValueError:
             amount = 0
         amount = int(amount)
         if amount <= 0:
