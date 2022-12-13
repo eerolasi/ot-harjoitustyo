@@ -4,6 +4,7 @@ from database_connection import get_database_connection
 class TransactionRepository:
     """Luokka, joka vastaa menoihin liittyvistä tietokantaoperaatioista.
     """
+
     def __init__(self, connection):
         """Luokan konstruktori, joka muodostaa tietokantayhteyden
 
@@ -23,7 +24,7 @@ class TransactionRepository:
         """
         cursor = self._connection.cursor()
         cursor.execute("INSERT INTO Transactions (username, category, amount) VALUES (?, ?, ?)", [
-                       transaction.username, transaction.category,transaction.amount])
+                       transaction.username, transaction.category, transaction.amount])
         self._connection.commit()
         return transaction.amount
 

@@ -103,10 +103,10 @@ class BudgetService:
         """
         try:
             budget = int(budget)
-        except:
+        except ValueError:
             budget = 0
         budget = int(budget)
-        if budget <=0:
+        if budget <= 0:
 
             raise InvalidInputError("Anna positiivinen arvo")
 
@@ -127,14 +127,13 @@ class BudgetService:
         """
         try:
             income = int(income)
-        except:
+        except ValueError:
             income = 0
         new_budget = income + budget
-        if income <=0:
+        if income <= 0:
             raise InvalidInputError("Anna positiivinen arvo")
 
         return self._user_repository.add_budget(new_budget, self._user.username)
-
 
     def add_transaction(self, category, amount):
         """Lisää käyttäjälle uuden menon
@@ -152,13 +151,13 @@ class BudgetService:
 
         try:
             amount = int(amount)
-        except:
+        except ValueError:
             amount = 0
         amount = int(amount)
-        if amount <=0:
+        if amount <= 0:
 
             raise InvalidInputError("Anna positiivinen arvo")
-        transaction = Transaction(self._user.username,category,amount)
+        transaction = Transaction(self._user.username, category, amount)
         return self._transaction_repository.add_transaction(transaction)
 
     def get_budget(self):

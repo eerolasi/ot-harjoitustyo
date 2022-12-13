@@ -1,6 +1,7 @@
 class Transaction:
     """Luokka, joka kuvaa yksittäistä menoa.
     """
+
     def __init__(self, username, category, amount):
         """Luokan konstruktori, joka luo menon
 
