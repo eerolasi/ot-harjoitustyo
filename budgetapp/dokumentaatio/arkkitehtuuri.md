@@ -11,21 +11,26 @@ User: username
 User: password
 User: budget
 ```
-Sovelluslogiikasta vastaa `BudgetService`, joka tarjoaa seuraavat metodit käyttöliittymän toiminnoille:
+![pakkauskaavio](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/photos/pakkauskaavio.png)  
 
-- signup(username, password, login)
-- login(username, password)
-- logout()
-- add_budget(budget)
-- add_transaction(category, amount)
-- get_budget()
-- get_transactions_sum()
-- get_balance()
-- get_transactions_by_category()
-- clear_all()
-
-### Pakkauskaavio
-![pakkauskaavio](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/photos/pakkauskaavio.png)
+- ui sisältää käyttöliittymän koodin
+- services sisältää sovelluslogiikan koodin:
+  - sovelluslogiikasta vastaa `BudgetService`, joka tarjoaa seuraavat metodit käyttöliittymän toiminnoille:
+    - `signup(username, password, login)`  
+    - `login(username, password)`  
+    - `logout()`  
+    - `add_budget(budget)`  
+    - `add_income(budget, income)`  
+    - `add_transaction(category, amount)`  
+    - `get_budget()`  
+    - `get_transactions_sum()`  
+    - `get_balance()`  
+    - `get_transactions_by_category()`  
+    - `clear_all()`  
+- repositories sisältää tietojen tallennuksesta ja käsittelystä vastaavan koodin
+  - `UserRepository`:ssä käsitellään kaikki käyttäjiin liittyvät tietokantaoperaatiot ja `TransactionRepository`:ssä käsitellään käyttäjän menoihin liittyvät tietokantaoperaatiot. Sovelluslogiikka pääsee näiden repositorioiden kautta käsiksi tietokantoihin. 
+- entities sisältää luokat, jotka kuvastavat sovelluksen käyttämiä tietokohteita.
+  - `User` kuvastaa yksittäistä käyttäjää ja `Transaction` kuvastaa yksittäistä menoa.
 
 ## Toiminnallisuudet
 
