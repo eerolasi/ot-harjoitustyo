@@ -1,5 +1,5 @@
 from tkinter import ttk, constants, StringVar, Listbox
-from services.budget_service import budget_service
+from services.budget_service import budget_service, InvalidInputError
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 from matplotlib.figure import Figure
@@ -21,6 +21,8 @@ class FrontPage:
         self._transactions_sum = budget_service.get_transactions_sum()
         self._balance = budget_service.get_balance()
         self._pie = budget_service.get_transactions_by_category()
+        self._error_variable = None
+        self._error_label = None
         self._front_page()
 
     def pack(self):
@@ -31,6 +33,12 @@ class FrontPage:
 
     def _front_page(self):
         self._frame = ttk.Frame(master=self._root)
+        self._error_variable = StringVar(self._frame)
+        self._error_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._error_variable,
+            foreground="red"
+        )
 
         heading_label = ttk.Label(
             master=self._frame, text=f"Olet nyt kirjautunut sisään nimellä {self._user.username}!")
@@ -61,9 +69,7 @@ class FrontPage:
             fig.set_size_inches(5, 5)
             fig.set_facecolor('#DCDCDC')
             ax.pie(values, labels=labels, autopct='%0.1f%%')
-
             chart = FigureCanvasTkAgg(fig, master=self._frame)
-
             chart.get_tk_widget().grid()
 
         if not self._budget:
@@ -90,6 +96,7 @@ class FrontPage:
             text="Lisää",
             command=self._add_income
         )
+
         income_button.grid()
 
         transaction_label = ttk.Label(master=self._frame, text="Lisää meno")
@@ -114,6 +121,8 @@ class FrontPage:
             master=self._frame,
             text="Lisää",
             command=self._add_transaction)
+        self._error_label.grid()
+
         transaction_button.grid(padx=5, pady=5)
 
         reset_label = ttk.Button(
@@ -129,6 +138,7 @@ class FrontPage:
         )
         logout_button.grid(padx=5, pady=5)
         self._frame.grid_columnconfigure(0, weight=3, minsize=600)
+        self._hide_error()
 
     def _reset_handler(self):
         budget_service.clear_all()
@@ -140,19 +150,33 @@ class FrontPage:
 
     def _add_budget(self):
         budget = self._budget_entry.get()
-        budget = int(budget)
 
-        budget_service.add_budget(budget)
-        self._reload()
+        try:
+            budget_service.add_budget(budget)
+            self._reload()
+        except InvalidInputError:
+            self._show_error()
 
     def _add_transaction(self):
         category = self._category_value.get()
         amount = self._amount_entry.get()
-        budget_service.add_transaction(category, amount)
-        self._reload()
+        try:
+            budget_service.add_transaction(category, amount)
+            self._reload()
+        except InvalidInputError:
+            self._show_error()
 
     def _add_income(self):
         income = self._income_entry.get()
-        budget = int(income) + self._budget
-        budget_service.add_budget(budget)
-        self._reload()
+        try:
+            budget_service.add_income(self._budget, income)
+            self._reload()
+        except InvalidInputError:
+            self._show_error()
+
+    def _show_error(self):
+        self._error_variable.set("Anna postiivinen summa")
+        self._error_label.grid()
+
+    def _hide_error(self):
+        self._error_label.grid_remove()

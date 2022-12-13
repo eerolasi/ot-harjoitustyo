@@ -20,6 +20,7 @@ class InvalidInputError(Exception):
 class BudgetService:
     """Luokka, joka vastaa sovelluslogiikasta
     """
+
     def __init__(self, user_repository=default_user_repository,
                  transaction_repository=default_transaction_repositiory):
         """Luokan konstruktori, joka luo uuden palvelun
@@ -49,7 +50,7 @@ class BudgetService:
             login (bool, optional): käyttäjän kirjautumisen tila
 
         Raises:
-            UserExitsError: TUottaa poikkeksen jos annettu käyttäjätunnus on varattu
+            UserExitsError: Tuottaa poikkeksen jos annettu käyttäjätunnus on varattu
 
         Returns:
             Palauttaa luodun käyttäjän oliona
@@ -70,7 +71,7 @@ class BudgetService:
             password (str): käyttäjän salasana
 
         Raises:
-            LoginError: Tuottaa poikkeuksen jos käyttäjätunnusta ei ole tai
+            LoginError: Tuottaa poikkeuksen jos käyttäjätunnusta ei ole tietokannassa tai
             salasana ei täsmää
 
         Returns:
@@ -92,35 +93,72 @@ class BudgetService:
         """Lisää käyttäjälle budjetin
 
         Args:
-            budget (int): käyttäjän antama budjetti
+            budget (str): käyttäjän antama budjetti merkkijonona
 
         Raises:
-            InvalidInputError: Tuottaa poikkeuksen jos käyttäjä yrittää asettaa
-            negatiivisen budjetin
+            InvalidInputError: Tuottaa poikkeuksen jos budjettin arvo on nolla tai alle
 
         Returns:
             Palauttaa päivitetyn budjetin
         """
-        if budget < 0:
-            raise InvalidInputError("Budjetti ei voi olla negatiivinen")
+        try:
+            budget = int(budget)
+        except:
+            budget = 0
+        budget = int(budget)
+        if budget <=0:
+
+            raise InvalidInputError("Anna positiivinen arvo")
+
         return self._user_repository.add_budget(budget, self._user.username)
+
+    def add_income(self, budget, income):
+        """Lisää uuden tulon
+
+        Args:
+            budget (int): käyttämän tämän hetkinen budjetti
+            income (str): käyttäjän antama tulo merkkijonona
+
+        Raises:
+            InvalidInputError: Tuottaa poikkeuksen jos tulon arvo on nolla tai alle
+
+        Returns:
+            Palauttaa päivitetyn budjetin
+        """
+        try:
+            income = int(income)
+        except:
+            income = 0
+        new_budget = income + budget
+        if income <=0:
+            raise InvalidInputError("Anna positiivinen arvo")
+
+        return self._user_repository.add_budget(new_budget, self._user.username)
+
 
     def add_transaction(self, category, amount):
         """Lisää käyttäjälle uuden menon
 
         Args:
             category (str): käyttäjän valitsema kategoria
-            amount (int): käyttäjän antama menon summa
+            amount (str): käyttäjän antama meno merkkijonona
 
         Raises:
-            InvalidInputError: Tuottaa poikkeuksen jos käyttäjä yrittää
+            InvalidInputError: Tuottaa poikkeuksen jos menon arvo on nolla tai alle
 
         Returns:
-            Palauttaa annetun menon summan
+            Palauttaa annetun menon arvon
         """
-        transaction = Transaction(self._user.username, category,int(amount))
-        if transaction.amount < 0:
-            raise InvalidInputError("Menon summa ei voi olla negatiivinen")
+
+        try:
+            amount = int(amount)
+        except:
+            amount = 0
+        amount = int(amount)
+        if amount <=0:
+
+            raise InvalidInputError("Anna positiivinen arvo")
+        transaction = Transaction(self._user.username,category,amount)
         return self._transaction_repository.add_transaction(transaction)
 
     def get_budget(self):
@@ -140,7 +178,8 @@ class BudgetService:
         Returns:
             Paluttaa käyttäjän menojen yhteissumman
         """
-        transactions = self._transaction_repository.get_transactions(self._user.username)
+        transactions = self._transaction_repository.get_transactions(
+            self._user.username)
         if not transactions:
             return 0
         return transactions
@@ -155,7 +194,8 @@ class BudgetService:
             Jos käyttäjällä on budjetti ja menoja palauttaa niiden erotuksen
         """
         budget = self._user_repository.get_budget(self._user.username)
-        transactions = self._transaction_repository.get_transactions(self._user.username)
+        transactions = self._transaction_repository.get_transactions(
+            self._user.username)
         if not budget and not transactions:
             return 0
         if budget and not transactions:
@@ -173,7 +213,6 @@ class BudgetService:
         amounts = self._transaction_repository.get_transactions_by_category(
             self._user.username)
         return amounts
-
 
     def clear_all(self):
         """Asettaa käyttäjän budjetin 0 ja poistaa kaikki menot

@@ -9,11 +9,12 @@ def get_user_by_row(row):
 class UserRepository:
     """Luokka, joka vastaa käyttäjiin liittyvistä tietokantaoperaatioista.
     """
+
     def __init__(self, connection):
         """Luokan konstruktori, joka muodostaa tietokantayhteyden
 
         Args:
-            connection: tietokantayhteys
+            connection(object): tietokantayhteys
         """
         self._connection = connection
 
@@ -21,7 +22,7 @@ class UserRepository:
         """Tallentaa uuden käyttäjän tietokantaan.
 
         Args:
-            user:käyttäjä
+            user(object):käyttäjä
 
         Returns:
             Tallennettu käyttäjä
@@ -36,7 +37,7 @@ class UserRepository:
         """Palauttaa käyttäjän käyttäjätunnuksen perusteella
 
         Args:
-            username: käyttäjän käyttäjätunnus
+            username(str): käyttäjän käyttäjätunnus
 
         Returns:
             Jos käyttäjätunnus löytyy tietokannasta palauttaa sen User-oliona,
@@ -69,7 +70,7 @@ class UserRepository:
 
         Args:
             budget(int): käyttäjän antama budjetti
-            username: käyttäjän käyttäjätunnus
+            username(str): käyttäjän käyttäjätunnus
 
         Returns:
             Palauttaa päivitetyn budjetin
@@ -85,15 +86,15 @@ class UserRepository:
         """Palauttaa käyttäjän budjetin
 
         Args:
-            user: käyttäjän käyttäjätunnus
+            username(str): käyttäjän käyttäjätunnus
 
         Returns:
-            Palauttaa käyttäjän budjetin
+            Palauttaa käyttäjän budjetin jos budjetti on asetettu muuten None
         """
         cursor = self._connection.cursor()
         row = cursor.execute(
             "SELECT budget FROM Users WHERE username=?", [username]).fetchone()
-        return row["budget"]
+        return row["budget"] if row else None
 
 
 user_repository = UserRepository(get_database_connection())
