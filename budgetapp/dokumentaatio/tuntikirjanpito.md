@@ -11,7 +11,7 @@
 | 6.12 | 7 | nollaus, graafinen esitys, kategoriointi, sekvenssikaavio |
 |7.12 | 1 | yritin selvitellä miksi tietokanta ei toimi |
 | 9.12 | 2 | docstring-dokumentoitia, tulojen lisääminen |
-| 12.12 | 1 | arkkitehtuurin edistämistä |
+| 12.12 | 2 | arkkitehtuurin edistämistä, käyttöohje |
 | 13.12 | 4 | lisää testejä, koodin refaktorointia, poikkeusten tuotto |
-| yht | 29 | |
+| yht | 30 | |
 
