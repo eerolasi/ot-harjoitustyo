@@ -20,4 +20,6 @@
 
 ## Viikko 6
 - Käyttäjä voi lisätä tuloja
+- Lisätty poikkeuksen tuotto kun käyttäjä syöttää virheellisellä syötteen
+- Tehty testejä BudgetServicelle
 - Refaktoroitu koodia siistimmäksi
