@@ -51,7 +51,7 @@ class FrontPage:
 
         balance_label = ttk.Label(
             master=self._frame,
-            text=f"Budjettisi tasapaino on {self._balance} euroa"
+            text=f"Budjettisi tasapaino on {round(self._balance,2)} euroa"
         )
         balance_label.grid(padx=5, pady=5)
 
@@ -66,9 +66,9 @@ class FrontPage:
             values = list(self._pie.values())
             fig = Figure()
             ax = fig.add_subplot(111)
-            fig.set_size_inches(5, 5)
+            fig.set_size_inches(4, 3)
             fig.set_facecolor('#DCDCDC')
-            ax.pie(values, labels=labels, autopct='%0.1f%%')
+            ax.pie(values, radius=1,labels=labels, autopct='%0.1f%%')
             chart = FigureCanvasTkAgg(fig, master=self._frame)
             chart.get_tk_widget().grid()
 
@@ -111,7 +111,7 @@ class FrontPage:
 
         amount_label = ttk.Label(
             master=self._frame,
-            text="Summa"
+            text="Määrä"
         )
         amount_label.grid(padx=5, pady=5)
         self._amount_entry = ttk.Entry(master=self._frame)
@@ -175,7 +175,7 @@ class FrontPage:
             self._show_error()
 
     def _show_error(self):
-        self._error_variable.set("Anna postiivinen summa")
+        self._error_variable.set("Anna postiivinen arvo")
         self._error_label.grid()
 
     def _hide_error(self):
