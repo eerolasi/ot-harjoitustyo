@@ -20,7 +20,7 @@ poetry run invoke start
 ## Kirjautuminen
 Sovellus käynnistyy kirjautumisnäkymästä, jossa kirjaudutaan sisään olemassaolevilla käyttäjätiedoilla tai siirrytään luomaan uusi käyttäjätunnus.
 
-![kirjautuminen]((https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/photos/kirjautuminen.png)
+![kirjautuminen](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/photos/kirjautuminen.png)
 
 ## Käyttäjän luonti
 Käyttäjä luodaan antamalla käyttäjätunnus ja salasana ja painamalla "Luo". Sivulta voi myös siirtyä takaisin kirjautumisnäkymään.
