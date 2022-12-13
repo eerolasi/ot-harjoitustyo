@@ -6,12 +6,7 @@
 - [käyttöohje](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/kayttoohje.md)
 - [release](https://github.com/eerolasi/ot-harjoitustyo/releases/tag/viikko5)
 
-## Käyttöohjeet
-
-Jos lataa koodin viikon5 releasen kautta on se alustettava manuaalisesti:
-- luo budgetapp-hakemistoon data-hakemisto
-- luo data hakemistoon tiedosto .gitkeep
-
+### Sovelluksen alustus
 Siirry budgetapp-hakemistoon
 1. Asenna riippuvuudet:  
 
@@ -27,7 +22,7 @@ poetry run invoke build
 poetry run invoke start
 ```
 
-Testaus:
+### Testaus:
 ```
 poetry run invoke test 
 ```
