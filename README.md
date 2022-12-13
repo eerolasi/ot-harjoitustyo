@@ -1,4 +1,5 @@
 # Budjetointisovellus
+Sovelluksen avulla voi seurata rahankäyttöään. Käyttäjä voi lisätä ja nollata budjettinsa sekä lisätä menoja ja tuloja.
 - [vaatimusmäärittely](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/vaatimusmaarittely.md)  
 - [tuntikirjanpito](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/tuntikirjanpito.md)  
 - [changelog](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/changelog.md)
