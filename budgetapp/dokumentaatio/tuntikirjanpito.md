@@ -12,5 +12,6 @@
 |7.11 | 1 | yritin selvitellä miksi tietokanta ei toimi |
 | 9.11 | 2 | docstring-dokumentoitia, tulojen lisääminen |
 | 12.11 | 1 | arkkitehtuurin edistämistä |
-| yht | 25 | |
+| 13.11 | 4 | lisää testejä, koodin koodin refaktorointia, poikkeusten tuotto |
+| yht | 29 | |
 
