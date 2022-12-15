@@ -17,6 +17,10 @@ class InvalidInputError(Exception):
     pass
 
 
+class InfiniteInputError(Exception):
+    pass
+
+
 class BudgetService:
     """Luokka, joka vastaa sovelluslogiikasta
     """
@@ -102,13 +106,14 @@ class BudgetService:
             Palauttaa päivitetyn budjetin
         """
         try:
-            budget = int(budget)
+            budget = float(budget)
         except ValueError:
             budget = 0
-        budget = int(budget)
         if budget <= 0:
+            raise InvalidInputError()
 
-            raise InvalidInputError("Anna positiivinen arvo")
+        if budget == float('inf'):
+            raise InfiniteInputError()
 
         return self._user_repository.add_budget(budget, self._user.username)
 
@@ -126,13 +131,15 @@ class BudgetService:
             Palauttaa päivitetyn budjetin
         """
         try:
-            income = int(income)
+            income = float(income)
         except ValueError:
             income = 0
         new_budget = income + budget
         if income <= 0:
-            raise InvalidInputError("Anna positiivinen arvo")
+            raise InvalidInputError()
 
+        if income == float('inf'):
+            raise InfiniteInputError()
         return self._user_repository.add_budget(new_budget, self._user.username)
 
     def add_transaction(self, category, amount):
@@ -150,13 +157,13 @@ class BudgetService:
         """
 
         try:
-            amount = int(amount)
+            amount = float(amount)
         except ValueError:
             amount = 0
-        amount = int(amount)
         if amount <= 0:
-
-            raise InvalidInputError("Anna positiivinen arvo")
+            raise InvalidInputError()
+        if amount == float('inf'):
+            raise InfiniteInputError()
         transaction = Transaction(self._user.username, category, amount)
         return self._transaction_repository.add_transaction(transaction)
 
@@ -181,7 +188,7 @@ class BudgetService:
             self._user.username)
         if not transactions:
             return 0
-        return transactions
+        return round(transactions, 2)
 
     def get_balance(self):
         """Palauttaa käyttäjän budjetin tasapainon
@@ -201,7 +208,7 @@ class BudgetService:
             return budget
         if transactions and not budget:
             return -transactions
-        return budget-transactions
+        return round(budget-transactions, 2)
 
     def get_transactions_by_category(self):
         """Palauttaa kaikki menot kategorioittain

@@ -3,7 +3,8 @@ from repositories.user_repository import user_repository
 from repositories.transaction_repository import transaction_repository
 from entities.user import User
 from entities.transaction import Transaction
-from services.budget_service import budget_service, InvalidInputError, UserExitsError, LoginError
+from services.budget_service import (budget_service, InvalidInputError,
+                                     InfiniteInputError, UserExitsError, LoginError)
 
 
 class TestUser(unittest.TestCase):
@@ -44,6 +45,8 @@ class TestUser(unittest.TestCase):
             budget_service.add_budget(-1)
         with self.assertRaises(InvalidInputError):
             budget_service.add_budget("hei")
+        with self.assertRaises(InfiniteInputError):
+            budget_service.add_budget(float('inf'))
         budget = budget_service.add_budget(100)
         self.assertEqual(100, budget)
 
@@ -53,6 +56,8 @@ class TestUser(unittest.TestCase):
 
         with self.assertRaises(InvalidInputError):
             budget_service.add_income(self.user.budget, "moi")
+        with self.assertRaises(InfiniteInputError):
+            budget_service.add_income(self.user.budget, float('inf'))
         budget = budget_service.add_income(self.user.budget, 2)
         self.assertEqual(budget, 102)
 
@@ -61,6 +66,8 @@ class TestUser(unittest.TestCase):
             budget_service.add_transaction("muu", -1)
         with self.assertRaises(InvalidInputError):
             budget_service.add_transaction("sijoitukset", "lol")
+        with self.assertRaises(InfiniteInputError):
+            budget_service.add_transaction("vapaa-aika", float('inf'))
         transaction = budget_service.add_transaction(
             self.transaction2.category, self.transaction2.amount)
         self.assertEqual(3, transaction)

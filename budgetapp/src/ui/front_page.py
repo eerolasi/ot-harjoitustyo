@@ -1,5 +1,5 @@
 from tkinter import ttk, constants, StringVar, Listbox
-from services.budget_service import budget_service, InvalidInputError
+from services.budget_service import budget_service, InfiniteInputError, InvalidInputError
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 from matplotlib.figure import Figure
@@ -51,7 +51,7 @@ class FrontPage:
 
         balance_label = ttk.Label(
             master=self._frame,
-            text=f"Budjettisi tasapaino on {round(self._balance,2)} euroa"
+            text=f"Budjettisi tasapaino on {self._balance} euroa"
         )
         balance_label.grid(padx=5, pady=5)
 
@@ -68,7 +68,7 @@ class FrontPage:
             ax = fig.add_subplot(111)
             fig.set_size_inches(4, 3)
             fig.set_facecolor('#DCDCDC')
-            ax.pie(values, radius=1,labels=labels, autopct='%0.1f%%')
+            ax.pie(values, labels=labels, autopct='%0.1f%%')
             chart = FigureCanvasTkAgg(fig, master=self._frame)
             chart.get_tk_widget().grid()
 
@@ -154,8 +154,11 @@ class FrontPage:
         try:
             budget_service.add_budget(budget)
             self._reload()
+
         except InvalidInputError:
-            self._show_error()
+            self._show_error("Anna positiivinen arvo")
+        except InfiniteInputError:
+            self._show_error("Liian suuri arvo")
 
     def _add_transaction(self):
         category = self._category_value.get()
@@ -163,8 +166,11 @@ class FrontPage:
         try:
             budget_service.add_transaction(category, amount)
             self._reload()
+
         except InvalidInputError:
-            self._show_error()
+            self._show_error("Anna positiivinen arvo")
+        except InfiniteInputError:
+            self._show_error("Liian suuri arvo")
 
     def _add_income(self):
         income = self._income_entry.get()
@@ -172,10 +178,12 @@ class FrontPage:
             budget_service.add_income(self._budget, income)
             self._reload()
         except InvalidInputError:
-            self._show_error()
+            self._show_error("Anna positiivinen arvo")
+        except InfiniteInputError:
+            self._show_error("Liian suuri arvo")
 
-    def _show_error(self):
-        self._error_variable.set("Anna postiivinen arvo")
+    def _show_error(self, message):
+        self._error_variable.set(message)
         self._error_label.grid()
 
     def _hide_error(self):

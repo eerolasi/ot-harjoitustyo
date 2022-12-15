@@ -41,7 +41,7 @@ class TransactionRepository:
         cursor = self._connection.cursor()
         row = cursor.execute(
             "SELECT sum(amount) as sum FROM Transactions WHERE username=?", [username]).fetchone()
-        return row["sum"]
+        return round(row["sum"], 2) if row["sum"] else None
 
     def get_transactions_by_category(self, username):
         """Palauttaa käyttäjän menojen jakauman kategorisoittain
@@ -56,7 +56,7 @@ class TransactionRepository:
         rows = cursor.execute(
             '''SELECT sum(amount) as amount, category FROM Transactions WHERE
             username=? group by category''', [username]).fetchall()
-        return {i["category"]: i["amount"] for i in rows}
+        return {i["category"]: round(i["amount"], 2) for i in rows}
 
     def clear_transactions(self, username):
         """Tyhjentää kaikki käyttäjän menot

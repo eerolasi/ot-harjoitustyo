@@ -80,7 +80,7 @@ class UserRepository:
         cursor.execute("UPDATE Users SET budget=? WHERE username=?", [
                        budget, username])
         self._connection.commit()
-        return budget
+        return round(budget, 2)
 
     def get_budget(self, username):
         """Palauttaa käyttäjän budjetin
@@ -94,7 +94,7 @@ class UserRepository:
         cursor = self._connection.cursor()
         row = cursor.execute(
             "SELECT budget FROM Users WHERE username=?", [username]).fetchone()
-        return row["budget"] if row else None
+        return round(row["budget"], 2) if row["budget"] else None
 
 
 user_repository = UserRepository(get_database_connection())
