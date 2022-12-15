@@ -9,9 +9,10 @@
 | 28.11 | 0.5 | koodin refaktorointia |
 | 29.11 | 6 | uloskirjautuminen, budjetin ja menojen luonti, testejä, arkkitehtuurikuvaus |
 | 6.12 | 7 | nollaus, graafinen esitys, kategoriointi, sekvenssikaavio |
-|7.12 | 1 | yritin selvitellä miksi tietokanta ei toimi |
+| 7.12 | 1 | yritin selvitellä miksi tietokanta ei toimi |
 | 9.12 | 2 | docstring-dokumentoitia, tulojen lisääminen |
 | 12.12 | 2 | arkkitehtuurin edistämistä, käyttöohje |
 | 13.12 | 4 | lisää testejä, koodin refaktorointia, poikkeusten tuotto |
-| yht | 30 | |
+! 15.12 | 1 | poikkeusten tuottoa, mahdollisuus lisätä senttejä |
+| yht | 31 | |
 
