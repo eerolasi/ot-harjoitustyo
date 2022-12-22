@@ -94,3 +94,6 @@ UI ->> UI: reload()
 Käyttäjä lisää uuden menon valitsemalla kategorian listasta ja lisää menon summan painamalla "Lisää"-painiketta. Käyttöliittymän tapahtumakäsittelijä kutsuu juuri annetuilla tiedoilla `BudgetServicen` metodia `add_transaction` joka luo käyttäjästä, kategoriasta ja summasta transaction-olion. Sovelluslogiikka kutsuu `TransactionRepositoryn` metodia `add_transaction` transaction-olio parametrinään. Metodi lisää menon tietokantaa ja palauttaa sovelluslogiikalle lisätyn menon summan. Sovelluslogiikka palauttaa summan edelleen käyttöliittymälle, joka päivittää `reload`:illa annetut tiedot etusivulle.
 
 
+## Tietojen pysyväistallennus
+Hakemistossa <em>repositories</em> olevat luokat `UserRepository` ja `TransactionRepository` vastaavat tietojen tallettamisesta. Molemmat luokat tallentavat tiedot SQLite-tietokantaan. `UserRepository` tallentaa käyttäjästä `users`-tauluun käyttäjän käyttäjänimen, salasanan ja budjetin, joka asetetaan vasta kirjauduttua eli se on aluksi None. `TransactionRepository` tallentaa `Transactions`-tauluun käyttäjänimen, kategorian ja menon määrän. Taulut alustetaan `initialize_database.py`-tiedostossa.
+
