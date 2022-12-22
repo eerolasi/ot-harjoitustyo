@@ -14,5 +14,6 @@
 | 12.12 | 2 | arkkitehtuurin edistämistä, käyttöohje |
 | 13.12 | 4 | lisää testejä, koodin refaktorointia, poikkeusten tuotto |
 | 15.12 | 1 | poikkeusten tuottoa, mahdollisuus lisätä senttejä |
-| yht | 31 | |
+| 22.12 | 2 | dokumentoitia |
+| yht | 33 | |
 
