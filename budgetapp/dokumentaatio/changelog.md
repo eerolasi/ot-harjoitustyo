@@ -23,3 +23,7 @@
 - Lisätty poikkeuksen tuotto kun käyttäjä syöttää virheellisellä syötteen
 - Tehty testejä BudgetServicelle
 - Refaktoroitu koodia siistimmäksi
+
+## Viikko 7
+- Lisää poikkeusten tuottoa 
+- Testausta, kaikki toimii
