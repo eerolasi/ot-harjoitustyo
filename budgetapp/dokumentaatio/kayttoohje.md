@@ -1,4 +1,13 @@
 # Käyttöohje
+Projektin lähdekoodi löytyy loppupalautus releasesta Assets osion alta. Pura koodi
+
+## Konfigurointi
+Tiedostojen pysyväistallennuksesta vastaavat tiedostot luodaan automaattisesti <em>data</em>-hakemistoon, jos niitä ei ole siellä vielä. 
+
+Halutessaan voi tietojen tallennukseen käytettävien tiedostojen nimiä muokata projektin juuressa olevassa <em>.env</em>-tiedostossa, jonka muoto on:
+```
+DATABASE_FILENAME=database.sqlite
+```
 
 ## Ohjelman käynnistäminen
 
@@ -26,3 +35,5 @@ Sovellus käynnistyy kirjautumisnäkymästä, jossa kirjaudutaan sisään olemas
 Käyttäjä luodaan antamalla käyttäjätunnus ja salasana ja painamalla "Luo". Sivulta voi myös siirtyä takaisin kirjautumisnäkymään.
 
 ![rekisterointi](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/photos/rekisterointi.png)
+
+
