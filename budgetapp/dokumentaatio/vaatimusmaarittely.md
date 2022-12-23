@@ -13,7 +13,6 @@ Sovelluksen tarkoituksena on, että käyttäjä voi seurata rahankäyttöään l
 - Käyttäjä voi lisätä budjettinsa. **tehty**
 - Käyttäjä voi lisätä menoja. **tehty**
 - Sovellus näyttää käyttäjän budjetin tasapainon. **tehty**
-- Käyttäjä voi nimetä menon.
 - Käyttäjä kategorisoida menojaan. **tehty**
 - Käyttäjä voi nostaa budjettiaan lisäämällä tuloja. **tehty**
 - Käyttäjä voi nollata budjetin ja menot. **tehty**
@@ -21,3 +20,5 @@ Sovelluksen tarkoituksena on, että käyttäjä voi seurata rahankäyttöään l
 
 #### Jatkokehitysideoita
 - Kuukausittainen budjetointi
+- Menojen nimeäminen ja näyttäminen 
+
