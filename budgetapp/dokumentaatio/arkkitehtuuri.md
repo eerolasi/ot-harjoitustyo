@@ -97,3 +97,6 @@ Käyttäjä lisää uuden menon valitsemalla kategorian listasta ja lisää meno
 ## Tietojen pysyväistallennus
 Hakemistossa <em>repositories</em> olevat luokat `UserRepository` ja `TransactionRepository` vastaavat tietojen tallettamisesta. Molemmat luokat tallentavat tiedot SQLite-tietokantaan. `UserRepository` tallentaa käyttäjästä `users`-tauluun käyttäjän käyttäjänimen, salasanan ja budjetin, joka asetetaan vasta kirjauduttua eli se on aluksi None. `TransactionRepository` tallentaa `Transactions`-tauluun käyttäjänimen, kategorian ja menon määrän. Taulut alustetaan `initialize_database.py`-tiedostossa.
 
+### Heikkous
+Ympyrädiagrammi toimii huonosti kun lisää muutaman pienen menon ja yhden niitä paljon suuremman menon.
+![heikkous](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/photos/heikkous.png)
