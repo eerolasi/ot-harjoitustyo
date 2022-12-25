@@ -3,8 +3,17 @@ from services.budget_service import budget_service, LoginError
 
 
 class LoginPage:
+    """Sisäänkirjautumisesta vastaava näkymä.
+    """
 
     def __init__(self, root, login, show_signup_page):
+        """Luokan konstruktori, joka luo sisäänkirjautumisesta vastaavan luokn.
+
+        Args:
+            root: Tkinter-ikkuna, johon näkymä alustetaan
+            login: käyttäjän sisäänkirjautuminen
+            show_signup_page: rekisteröitymisnäkymä
+        """
         self._root = root
         self._frame = None
         self._login = login

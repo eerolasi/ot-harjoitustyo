@@ -4,11 +4,21 @@ from ui.front_page import FrontPage
 
 
 class UI:
+    """Luokka, joka vastaa sovelluksen käyttöliittymästä"""
+
     def __init__(self, root):
+        """Luokan konstruktori, joka luo käyttöliittymästä vastaavan luokan.
+
+        Args:
+            root: TKinter-ikkuna, johon käyttöliittymä alustettaan
+        """
+
         self._root = root
         self._current_view = None
 
     def start(self):
+        """Käynnistää käyttöliittymän.
+        """
         self._show_login_page()
 
     def _hide_current_view(self):

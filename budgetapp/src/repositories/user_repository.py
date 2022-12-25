@@ -52,7 +52,7 @@ class UserRepository:
         """Palauttaa kaikki käyttäjät
 
         Returns:
-            Palauttaa tietokannasta löytyvät käyttäjät listana
+            Tietokannasta löytyvät käyttäjät listana
         """
         cursor = self._connection.cursor()
         rows = cursor.execute("SELECT * FROM Users").fetchall()
@@ -73,7 +73,7 @@ class UserRepository:
             username(str): käyttäjän käyttäjätunnus
 
         Returns:
-            Palauttaa päivitetyn budjetin
+            Päivitetyn budjetin pyöristettynä kahden desimaalin tarkkuudelle
         """
         cursor = self._connection.cursor()
 
@@ -89,7 +89,8 @@ class UserRepository:
             username(str): käyttäjän käyttäjätunnus
 
         Returns:
-            Palauttaa käyttäjän budjetin jos budjetti on asetettu muuten None
+            Käyttäjän budjetin pyöristettynä
+            kahden desimaalin tarkkuudella jos budjetti on asetettu muuten None
         """
         cursor = self._connection.cursor()
         row = cursor.execute(

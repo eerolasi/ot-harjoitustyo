@@ -3,6 +3,9 @@ from services.budget_service import budget_service, UserExitsError
 
 
 class SignupPage:
+    """Käyttäjätunnuksen luonnista vastaava näkymä.
+    """
+
     def __init__(self, root, signup, show_login_page):
         self._root = root
         self._frame = None
@@ -16,9 +19,13 @@ class SignupPage:
         self._signup_page()
 
     def pack(self):
+        """Näyttää näkymän.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Tuhoaa näkymän.
+        """
         self._frame.destroy()
 
     def _signup_page(self):
@@ -76,7 +83,6 @@ class SignupPage:
         try:
             budget_service.signup(username, password)
             self._signup()
-            print("Käyttäjätunnuksen luonti onnistui")
         except UserExitsError:
             self._show_error("Käyttäjätunnus on varattu")
 

@@ -32,25 +32,25 @@ class TransactionRepository:
         """Palauttaa käyttäjän menojen yhteissumman
 
         Args:
-            username(str): käyttäjän käyttäjättunnus
+            username(str): käyttäjän käyttäjätunnus
 
         Returns:
-            Palauttaa käyttäjätunnuksen perusteella yhteenlasketun summan
-            kaikista käyttäjän menoista
+            Käyttäjätunnuksen perusteella yhteenlasketun summan pyöristettynä
+            kahden desimaalin tarkkuudella kaikista käyttäjän menoista
         """
         cursor = self._connection.cursor()
         row = cursor.execute(
             "SELECT sum(amount) as sum FROM Transactions WHERE username=?", [username]).fetchone()
         return round(row["sum"], 2) if row["sum"] else None
 
-    def get_transactions_by_category(self, username):
+    def get_transactions_sum_by_category(self, username):
         """Palauttaa käyttäjän menojen jakauman kategorisoittain
 
         Args:
             username(str): käyttäjän käyttäjätunnus
 
         Returns:
-            Palauttaa sanakirjan, jossa kategoriat ja niitä vastaavat menojen summat
+            Sanakirjan, jossa kategoriat ja niitä vastaavat menojen summat
         """
         cursor = self._connection.cursor()
         rows = cursor.execute(

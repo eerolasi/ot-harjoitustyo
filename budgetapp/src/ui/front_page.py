@@ -6,7 +6,17 @@ from matplotlib.figure import Figure
 
 
 class FrontPage:
+    """Sovelluksen etusivusta eli budjetoinnista vastaava näkymä.
+    """
+
     def __init__(self, root, logout, reload):
+        """Luokan konstruktori, joka luo budjetointinäkymän.
+
+        Args:
+            root: Tkinter-ikkuna, johon näkymä alustetaan
+            logout: uloskirjautuminen
+            reload: näkymän päivitys
+        """
         self._root = root
         self._frame = None
         self._logout = logout
@@ -20,15 +30,19 @@ class FrontPage:
         self._budget = budget_service.get_budget()
         self._transactions_sum = budget_service.get_transactions_sum()
         self._balance = budget_service.get_balance()
-        self._pie = budget_service.get_transactions_by_category()
+        self._transactions = budget_service.get_transactions_sum_by_category()
         self._error_variable = None
         self._error_label = None
         self._front_page()
 
     def pack(self):
+        """Näyttää näkymän.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Tuhoaa näkymän.
+        """
         self._frame.destroy()
 
     def _front_page(self):
@@ -41,11 +55,11 @@ class FrontPage:
         )
 
         heading_label = ttk.Label(
-            master=self._frame, text=f"Olet nyt kirjautunut sisään nimellä {self._user.username}!")
-        heading_label.grid(padx=5, pady=5)
+            master=self._frame, text=f"Olet kirjautunut sisään nimellä {self._user.username}!")
+        heading_label.grid()
         show_budget_label = ttk.Label(
             master=self._frame,
-            text=f"Budjettisi on: {self._budget} euroa"
+            text=f"Budjettisi on {self._budget} euroa"
         )
         show_budget_label.grid(padx=5, pady=5)
 
@@ -61,40 +75,29 @@ class FrontPage:
         )
         transactions_sum_label.grid(padx=5, pady=5)
 
-        if self._transactions_sum:
-            labels = list(self._pie.keys())
-            values = list(self._pie.values())
-            fig = Figure()
-            ax = fig.add_subplot(111)
-            fig.set_size_inches(4, 3)
-            fig.set_facecolor('#DCDCDC')
-            ax.pie(values, labels=labels, autopct='%0.1f%%')
-            chart = FigureCanvasTkAgg(fig, master=self._frame)
-            chart.get_tk_widget().grid()
-
         if not self._budget:
             budget_label = ttk.Label(
                 master=self._frame, text="Anna budjettisi:"
             )
             self._budget_entry = ttk.Entry(master=self._frame)
             budget_label.grid(padx=5, pady=5)
-            self._budget_entry.grid(padx=5, pady=5)
+            self._budget_entry.grid()
 
             budget_button = ttk.Button(
                 master=self._frame,
                 text="Lisää",
-                command=self._add_budget)
+                command=self._add_budget_handler)
             budget_button.grid(padx=5, pady=5)
 
-        income_label = ttk.Label(master=self._frame, text="Lisää tuloja")
+        income_label = ttk.Label(master=self._frame, text="Lisää tuloja:")
         income_label.grid()
 
         self._income_entry = ttk.Entry(master=self._frame)
-        self._income_entry.grid()
+        self._income_entry.grid(padx=5, pady=5)
         income_button = ttk.Button(
             master=self._frame,
             text="Lisää",
-            command=self._add_income
+            command=self._add_income_handler
         )
 
         income_button.grid()
@@ -103,25 +106,25 @@ class FrontPage:
         transaction_label.grid(padx=5, pady=5)
         category_label = ttk.Label(
             master=self._frame, text="Valitse kategoria: ")
-        category_label.grid()
+        category_label.grid(padx=5, pady=5)
         self._category_value = StringVar(master=self._frame)
         self._categories_entry = ttk.OptionMenu(
             self._frame, self._category_value, *self._categories)
-        self._categories_entry.grid()
+        self._categories_entry.grid(padx=5, pady=5)
 
         amount_label = ttk.Label(
             master=self._frame,
-            text="Määrä"
+            text="Määrä:"
         )
-        amount_label.grid(padx=5, pady=5)
+        amount_label.grid()
         self._amount_entry = ttk.Entry(master=self._frame)
         self._amount_entry.grid(padx=5, pady=5)
 
         transaction_button = ttk.Button(
             master=self._frame,
             text="Lisää",
-            command=self._add_transaction)
-        self._error_label.grid()
+            command=self._add_transaction_handler)
+        self._error_label.grid(padx=5, pady=5)
 
         transaction_button.grid(padx=5, pady=5)
 
@@ -129,7 +132,7 @@ class FrontPage:
             master=self._frame,
             text="Nollaa",
             command=self._reset_handler)
-        reset_label.grid()
+        reset_label.grid(padx=5, pady=5)
 
         logout_button = ttk.Button(
             master=self._frame,
@@ -137,7 +140,19 @@ class FrontPage:
             command=self._logout_handler
         )
         logout_button.grid(padx=5, pady=5)
-        self._frame.grid_columnconfigure(0, weight=3, minsize=600)
+
+        if self._transactions_sum:
+            labels = list(self._transactions.keys())
+            values = list(self._transactions.values())
+            fig = Figure()
+            ax = fig.add_subplot(111)
+            fig.set_size_inches(5, 4)
+            fig.set_facecolor('#d9d9d9')
+            ax.pie(values, labels=labels, autopct='%0.1f%%')
+            chart = FigureCanvasTkAgg(fig, master=self._frame)
+            chart.get_tk_widget().grid(row=0, column=1, rowspan=20)
+
+        self._frame.grid_columnconfigure(0, weight=1, minsize=500)
         self._hide_error()
 
     def _reset_handler(self):
@@ -148,7 +163,7 @@ class FrontPage:
         budget_service.logout()
         self._logout()
 
-    def _add_budget(self):
+    def _add_budget_handler(self):
         budget = self._budget_entry.get()
 
         try:
@@ -160,7 +175,7 @@ class FrontPage:
         except InfiniteInputError:
             self._show_error("Liian suuri arvo")
 
-    def _add_transaction(self):
+    def _add_transaction_handler(self):
         category = self._category_value.get()
         amount = self._amount_entry.get()
         try:
@@ -172,7 +187,7 @@ class FrontPage:
         except InfiniteInputError:
             self._show_error("Liian suuri arvo")
 
-    def _add_income(self):
+    def _add_income_handler(self):
         income = self._income_entry.get()
         try:
             budget_service.add_income(self._budget, income)
