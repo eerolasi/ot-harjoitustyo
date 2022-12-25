@@ -5,7 +5,7 @@ Sovelluksen avulla voi seurata rahankäyttöään. Käyttäjä voi lisätä ja n
 - [changelog](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/changelog.md)
 - [arkkitehtuuri](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/arkkitehtuuri.md)
 - [käyttöohje](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/kayttoohje.md)
-- [viimeisin release](https://github.com/eerolasi/ot-harjoitustyo/releases/tag/viikko6)
+- [viimeisin release](https://github.com/eerolasi/ot-harjoitustyo/releases/tag/loppupalautus)
 - [testausdokumentti](https://github.com/eerolasi/ot-harjoitustyo/blob/master/budgetapp/dokumentaatio/testausdokumentti.md)
 ### Python-versio  
 - Sovellus toimii Pythonin versiolla 3.8
