@@ -5,7 +5,7 @@ from entities.user import User
 from entities.transaction import Transaction
 
 
-class TestUser(unittest.TestCase):
+class TestTransactions(unittest.TestCase):
     def setUp(self):
         user_repository.clear_table()
         transaction_repository.clear_table()
@@ -25,7 +25,7 @@ class TestUser(unittest.TestCase):
 
     def test_get_transactions_by_category(self):
         transaction_repository.add_transaction(self.transcation)
-        category = transaction_repository.get_transactions_by_category(
+        category = transaction_repository.get_transactions_sum_by_category(
             self.user.username)
         self.assertEqual(
             category, {self.transcation.category: self.transcation.amount})

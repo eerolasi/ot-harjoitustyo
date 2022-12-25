@@ -7,7 +7,7 @@ from services.budget_service import (budget_service, InvalidInputError,
                                      InfiniteInputError, UserExitsError, LoginError)
 
 
-class TestUser(unittest.TestCase):
+class TestBudgetService(unittest.TestCase):
     def setUp(self):
         user_repository.clear_table()
         transaction_repository.clear_table()
@@ -92,7 +92,7 @@ class TestUser(unittest.TestCase):
     def test_get_transactions_by_category(self):
         budget_service.add_transaction(
             self.transaction.category, self.transaction.amount)
-        category = budget_service.get_transactions_by_category()
+        category = budget_service.get_transactions_sum_by_category()
         self.assertEqual(
             category, {self.transaction.category: self.transaction.amount})
 
