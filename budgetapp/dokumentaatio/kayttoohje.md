@@ -1,8 +1,8 @@
 # Käyttöohje
-Projektin lähdekoodi löytyy loppupalautus releasesta Assets osion alta. Pura koodi
+Projektin lähdekoodi löytyy loppupalautus releasesta Assets osion alta. Pura koodi.
 
 ## Konfigurointi
-Tiedostojen pysyväistallennuksesta vastaavat tiedostot luodaan automaattisesti <em>data</em>-hakemistoon, jos niitä ei ole siellä vielä. 
+Tiedostojen pysyväistallennuksesta vastaavat tiedostot luodaan automaattisesti <em>data</em>-hakemistoon, jos niitä ei ole siellä vielä.
 
 Halutessaan voi tietojen tallennukseen käytettävien tiedostojen nimiä muokata projektin juuressa olevassa <em>.env</em>-tiedostossa, jonka muoto on:
 ```

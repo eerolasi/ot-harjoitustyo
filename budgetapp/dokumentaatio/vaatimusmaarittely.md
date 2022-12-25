@@ -20,5 +20,4 @@ Sovelluksen tarkoituksena on, että käyttäjä voi seurata rahankäyttöään l
 
 #### Jatkokehitysideoita
 - Kuukausittainen budjetointi
-- Menojen nimeäminen ja näyttäminen 
-
+- Menojen nimeäminen ja näyttäminen kategorisoittain
