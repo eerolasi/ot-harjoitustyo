@@ -16,5 +16,6 @@
 | 15.12 | 1 | poikkeusten tuottoa, mahdollisuus lisätä senttejä |
 | 22.12 | 2 | dokumentoitia |
 | 23.12 | 2 | dokumentointia |
-| yht | 35 | |
+| 25.12 | 5 | viimeistelyä |
+| yht | 40 | |
 
