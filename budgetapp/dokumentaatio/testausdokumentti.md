@@ -13,8 +13,13 @@ Testauksen haarautumakattavuus on 97%
 
 ## Järjestelmätestaus
 
-Sovellusta on testattu manuaalisesti virtuaaliympäristössä.
+Sovellusta on testattu manuaalisesti etätyöpöydällä.
+
+Sovellus on haettu käyttöohjeiden mukaisesti ja konfiguroitu <em>.env-</em> tiedoston kautta.  
 
 Kaikki määrittelydokumentin toiminnallisuudet on testattu ja yritetty antaa virheellisiä syötteitä.  
+
+
+
 
 
