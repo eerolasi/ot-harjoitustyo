@@ -7,6 +7,13 @@ class SignupPage:
     """
 
     def __init__(self, root, signup, show_login_page):
+        """Luokan konstruktori, joka luo rekisteröitymisnäkymän.
+
+        Args:
+            root: Tkinter-ikkuna, johon näkymä alustetaan
+            signup: käyttäjän rekisteröityminen
+            show_login_page: kirjautumisnäkymä
+        """
         self._root = root
         self._frame = None
         self._signup = signup

@@ -4,7 +4,8 @@ from ui.front_page import FrontPage
 
 
 class UI:
-    """Luokka, joka vastaa sovelluksen käyttöliittymästä"""
+    """Luokka, joka vastaa sovelluksen käyttöliittymästä.
+    """
 
     def __init__(self, root):
         """Luokan konstruktori, joka luo käyttöliittymästä vastaavan luokan.
